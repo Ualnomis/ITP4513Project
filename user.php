@@ -37,13 +37,13 @@ $rc = mysqli_fetch_assoc($rs);
 </div>
 <div class="form-group">
   <label for="pwd">Password</label>
-  <input type="password" class="form-control" name="pwd" id="pwd" placeholder="Password">
+  <input type="password" class="form-control" name="pswd" id="pwd" placeholder="Password">
 </div>
 <div class="form-group">
   <label for="pwdConfirm">Confirm Password</label>
-  <input type="password" class="form-control"  name="pwdConfirm" placeholder="Password">
+  <input type="password" class="form-control"  name="pswdConfirm" placeholder="Password">
 </div>
-<button type="submit" class="btn btn-primary">Save Change</button>
+<input type="submit" class="btn btn-primary" value = "Save Change">
 <a href="includes/deleteuser.inc.php"><button class="btn btn-warning animation-on-hover" type="button" >Delete Account</button></a>
 </form>
 EOD;

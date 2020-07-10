@@ -96,9 +96,10 @@ session_start();
         <h1>Welcome Back!</h1>
         <?php
         if (isset($_GET['error'])) {
+          if ($_GET['error'] == "wrongpwd") {
+          }
         }
-        if ($_GET['error'] == "wrongpwd") {
-        }
+
 
         ?>
         <form action="includes/login.inc.php" method="post">
