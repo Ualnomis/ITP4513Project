@@ -30,21 +30,21 @@
       <div id="signup">
         <h1>Sign Up for Free</h1>
 
-        <form action="home.html" method="post">
+        <form action="includes/signup.inc.php" method="post">
 
           <div class="top-row">
             <div class="field-wrap">
               <label>
                 First Name<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" />
+              <input type="text" name="fname" maxlength="255" required autocomplete="off" />
             </div>
 
             <div class="field-wrap">
               <label>
                 Last Name<span class="req">*</span>
               </label>
-              <input type="text" required autocomplete="off" />
+              <input type="text" name="lname" maxlength="255" required autocomplete="off" />
             </div>
           </div>
 
@@ -52,24 +52,24 @@
             <label>
               Email Address<span class="req">*</span>
             </label>
-            <input type="email" required autocomplete="off">
+            <input type="email" name="email" maxlength="50" required autocomplete="off">
           </div>
 
           <div class="field-wrap">
             <label>
               Set A Password<span class="req">*</span>
             </label>
-            <input type="password" required autocomplete="off">
+            <input type="password" maxlength="50" name="password" required autocomplete="off">
           </div>
 
           <div class="field-wrap">
             <label>
               Phone Number<span class="req">*</span>
             </label>
-            <input type="phone" required autocomplete="off">
+            <input type="tel" name="phoneNo" maxlength="8" required autocomplete="off">
           </div>
 
-          <input type="submit" class="button button-block" value="Sign Up">
+          <input type="submit" name="signup-submit" class="button button-block" value="Sign Up">
         </form>
 
       </div>
