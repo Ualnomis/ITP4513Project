@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,9 +30,24 @@
     </ul>
 
     <div class="tab-content">
+
+
+
+
       <div id="signup">
         <h1>Sign Up for Free</h1>
-
+        <?php
+        if (isset($_GET['error'])) {
+          if ($_GET['error'] == "usertaken") {
+            echo "<h1 style=\"color: red\">Email have been registed</h1>";
+          }
+        }
+        if (isset($_GET['signup'])) {
+          if ($_GET['signup'] == "success") {
+            echo "<h1 style=\"color: green\">Sign Up Success</h1>";
+          }
+        }
+        ?>
         <form action="includes/signup.inc.php" method="post">
 
           <div class="top-row">
@@ -76,34 +94,43 @@
 
       <div id="login">
         <h1>Welcome Back!</h1>
+        <?php
+        if (isset($_GET['error'])) {
+        }
+        if ($_GET['error'] == "wrongpwd") {
+        }
 
-        <form action="home.html" method="post">
+        ?>
+        <form action="includes/login.inc.php" method="post">
 
           <div class="field-wrap">
             <label>
               Email Address / Tenant ID<span class="req">*</span>
             </label>
-            <input type="text" required autocomplete="off" />
+            <input type="text" name="uid" required autocomplete="off" />
           </div>
 
           <div class="field-wrap">
             <label>
               Password<span class="req">*</span>
             </label>
-            <input type="password" required autocomplete="off" />
+            <input type="password" name="pwd" required autocomplete="off" />
           </div>
 
           <p class="forgot"><a href="#">Forgot Password?</a></p>
 
-          <input type="submit" class="button button-block" value="Log In" />
+          <input type="submit" name="login-submit" class="button button-block" value="Log In" />
 
         </form>
 
       </div>
+
     </div>
-  </div> <!-- /form -->
+  </div>
+  <!-- /form -->
+
   <!-- partial -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
   <script src="js/script.js"></script>
 </body>
 

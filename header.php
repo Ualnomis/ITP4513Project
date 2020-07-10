@@ -1,3 +1,12 @@
+<?php
+session_start();
+if ($_SESSION) {
+  $userID =  $_SESSION['userID'];
+} else {
+  header("Location: login.php");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -53,7 +62,7 @@
               <p>View Order</p>
             </a>
           </li>
-          <li class="active">
+          <li>
             <a href="good.php">
               <i class="fab fa-product-hunt"></i>
               <p>Good Manage</p>
@@ -115,7 +124,7 @@
                   <li class="nav-link"><a href="user.php" class="nav-item dropdown-item">Profile</a></li>
                   <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
                   <li class="dropdown-divider"></li>
-                  <li class="nav-link"><a href="login.php" class="nav-item dropdown-item">Log out</a></li>
+                  <li class="nav-link"><a href="includes/logout.inc.php" class="nav-item dropdown-item">Log out</a></li>
                 </ul>
               </li>
               <li class="separator d-lg-none"></li>
