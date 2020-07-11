@@ -2,9 +2,12 @@
 session_start();
 if ($_SESSION) {
   $userID =  $_SESSION['userID'];
+  $role = $_SESSION["role"];
 } else {
   header("Location: login.php");
 }
+
+require "connection/mysqli_conn.php";
 ?>
 
 <!DOCTYPE html>
@@ -62,18 +65,24 @@ if ($_SESSION) {
               <p>View Order</p>
             </a>
           </li>
-          <li>
-            <a href="good.php">
-              <i class="fab fa-product-hunt"></i>
-              <p>Good Manage</p>
-            </a>
-          </li>
-          <li>
-            <a href="order_manage.php">
-              <i class="fas fa-receipt"></i>
-              <p>Order Manage</p>
-            </a>
-          </li>
+          <?php
+          if ($_SESSION["role"] == "tenant") {
+          ?>
+            <li>
+              <a href="good.php">
+                <i class="fab fa-product-hunt"></i>
+                <p>Good Manage</p>
+              </a>
+            </li>
+            <li>
+              <a href="order_manage.php">
+                <i class="fas fa-receipt"></i>
+                <p>Order Manage</p>
+              </a>
+            </li>
+          <?php
+          }
+          ?>
           <li>
             <a href="user.php">
               <i class="fas fa-user"></i>
@@ -109,6 +118,13 @@ if ($_SESSION) {
           </button>
           <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                  <div class="photo">
+                    <img src="./assets/img/anime3.png" alt="Profile Photo">
+                  </div>
+                </a>
+              </li>
 
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">

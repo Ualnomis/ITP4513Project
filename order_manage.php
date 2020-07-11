@@ -1,5 +1,8 @@
 <?php
 require "header.php";
+if ($_SESSION["role"] != "tenant") {
+  header("Location: dashboard.php");
+}
 ?>
 <!-- content -->
 <div class="content">

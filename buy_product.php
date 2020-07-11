@@ -10,11 +10,15 @@ require "header.php";
       <div class="form-group">
         <label for="shopidSelector">Shop ID</label>
         <select class="form-control" id="shopidSelector">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
+          <?php
+          $sql = "SELECT * FROM shop";
+          $rs = mysqli_query($conn, $sql) or die(mysqli_connect_error($conn));
+          if (mysqli_num_rows($rs) > 0) {
+            while ($rc = mysqli_fetch_assoc($rs)) {
+              printf("<option>%s</option>", $rc["shopID"]);
+            }
+          }
+          ?>
         </select>
       </div>
       <div class="form-group">
