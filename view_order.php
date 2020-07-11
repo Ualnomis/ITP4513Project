@@ -1,5 +1,6 @@
 <?php
 require "header.php";
+
 ?>
 <!-- content -->
 <div class="content">
@@ -17,38 +18,44 @@ require "header.php";
       </thead>
       <tbody>
         <!-- sample data -->
-        <tr>
-          <td class="text-center">1</td>
-          <td>2020/01/01</td>
-          <td>Delivery</td>
-          <td class="text-right">$99,225</td>
-          <td class="td-actions text-right">
-            <a href="view_order_detail.html"><button type="button" class="btn btn-primary">View Order</button></a>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">2</td>
-          <td>2020/01/01</td>
-          <td>Awaiting</td>
-          <td class="text-right">$19,225</td>
-          <td class="td-actions text-right">
-            <a href="view_order_detail.html"><button type="button" class="btn btn-primary">View Order</button></a>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-center">3</td>
-          <td>2020/01/01</td>
-          <td>Completed</td>
-          <td class="text-right">$29,225</td>
-          <td class="td-actions text-right">
-            <a href="view_order_detail.html"><button type="button" class="btn btn-primary">View Order</button></a>
-          </td>
-        </tr>
+        <?php
+        $sql = "SELECT * FROM orders WHERE customerEmail = '" . $userID . "'";
+        $rs = mysqli_query($conn, $sql);
 
+        if (mysqli_num_rows($rs) > 0) {
+          while ($rc = mysqli_fetch_assoc($rs)) {
+        ?>
+            <tr>
+              <td class="text-center"><?php echo $rc["orderID"]; ?></td>
+              <td><?php echo $rc["orderDateTime"]; ?></td>
+              <td>
+                <?php
+                if ($rc["status"] == 1) {
+                  echo "Delivery";
+                } else if ($rc["status"] == 2) {
+                  echo "Awaiting";
+                } else if ($rc["status"] == 3) {
+                  echo "Completed";
+                }
+                ?>
+
+              </td>
+              <td class="text-right"><?php echo $rc["totalPrice"]; ?></td>
+              <td class="td-actions text-right">
+                <a href="view_order_detail.php?orderID=<?php echo $rc["orderID"]; ?>"><button type="button" class="btn btn-primary">View Order</button></a>
+              </td>
+            </tr>
+        <?php
+          }
+        } else {
+        }
+        ?>
       </tbody>
     </table>
   </div>
 </div>
+
 <?php
+
 require "footer.php";
 ?>

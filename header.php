@@ -53,18 +53,30 @@ require "connection/mysqli_conn.php";
               <p>Home</p>
             </a>
           </li>
-          <li>
-            <a href="buy_product.php">
-              <i class="fas fa-shopping-cart"></i>
-              <p>Order</p>
-            </a>
-          </li>
-          <li>
-            <a href="view_order.php">
-              <i class="fas fa-receipt"></i>
-              <p>View Order</p>
-            </a>
-          </li>
+          <?php
+          if ($_SESSION["role"] == "customer") {
+          ?>
+            <li>
+              <a href="buy_product.php">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Order</p>
+              </a>
+            </li>
+            <li>
+              <a href="view_order.php">
+                <i class="fas fa-receipt"></i>
+                <p>View Order</p>
+              </a>
+            </li>
+            <li>
+              <a href="user.php">
+                <i class="fas fa-user"></i>
+                <p>User Profile</p>
+              </a>
+            </li>
+          <?php
+          }
+          ?>
           <?php
           if ($_SESSION["role"] == "tenant") {
           ?>
@@ -83,12 +95,6 @@ require "connection/mysqli_conn.php";
           <?php
           }
           ?>
-          <li>
-            <a href="user.php">
-              <i class="fas fa-user"></i>
-              <p>User Profile</p>
-            </a>
-          </li>
 
         </ul>
       </div>
