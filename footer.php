@@ -18,7 +18,7 @@
            <script>
              document.write(new Date().getFullYear())
            </script> made with by
-           <a href="javascript:void(0)" target="_blank">Lau Man Chun Leung Tsz Ho</a> for a better web.
+           <a>Lau Man Chun Leung Tsz Ho</a>
          </div>
        </div>
      </footer>

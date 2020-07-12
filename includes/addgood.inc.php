@@ -13,5 +13,7 @@ echo $sql;
 mysqli_query($conn, $sql);
 if (mysqli_affected_rows($conn) > 0) {
   echo "OK";
-  header("Location: ../good.php?update=success");
+  header("Location: ../good.php?add=success");
+} else {
+  header("Location: ../good.php?add=fail");
 }

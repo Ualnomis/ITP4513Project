@@ -70,11 +70,11 @@ require "header.php";
                         <form action="includes/updategood.inc.php" method="POST">
                           <div class="form-group">
                             <label for="qty">Stock Quantity</label>
-                            <input type="number" step="any" value="<?php echo $rc["remainingStock"]; ?>" class="form-control" id="editQty" name="editQty" placeholder="Enter Good Name" />
+                            <input type="number" min="0" value="<?php echo $rc["remainingStock"]; ?>" class="form-control" id="editQty" name="editQty" placeholder="Enter Good Name" />
                           </div>
                           <div class="form-group">
                             <label for="price">Stock Price</label>
-                            <input type="number" step="any" value="<?php echo $rc["stockPrice"]; ?>" class="form-control" id="editPrice" name="editPrice" placeholder="Enter Good Name" />
+                            <input type="number" min="0" step="any" value="<?php echo $rc["stockPrice"]; ?>" class="form-control" id="editPrice" name="editPrice" placeholder="Enter Good Name" />
                           </div>
                           <button type="submit" class="btn btn-primary">Edit</button>
                           <input type="hidden" id="goodsNumber" name="goodsNumber" value="<?php echo $rc["goodsNumber"]; ?>" />
@@ -128,15 +128,15 @@ require "header.php";
               </div>
               <div class="form-group">
                 <label for="goodName">Good Name</label>
-                <input type="text" class="form-control" name="addGoodName" id="addGoodName" placeholder="Enter Good Name" />
+                <input type="text" required class="form-control" name="addGoodName" id="addGoodName" placeholder="Enter Good Name" />
               </div>
               <div class="form-group">
                 <label for="qty">Stock Quantity</label>
-                <input type="number" class="form-control" name="addQty" id="addQty" placeholder="Enter Good Name" />
+                <input type="number" required class="form-control" name="addQty" id="addQty" placeholder="Enter Quantity" />
               </div>
               <div class="form-group">
                 <label for="price">Stock Price</label>
-                <input type="number" step="any" class="form-control" name="addPrice" id="addPrice" placeholder="Enter Good Name" />
+                <input type="number" required step="any" class="form-control" name="addPrice" id="addPrice" placeholder="Enter Price" />
               </div>
               <button type="submit" class="btn btn-primary">Add</button>
             </form>
@@ -147,6 +147,13 @@ require "header.php";
   </div>
 </div>
 
+<?php
+if (isset($_GET["add"])) {
+  if ($_GET["add"] == "fail") {
+    echo "<script type='text/javascript'>alert('Fail to add the good');</script>";
+  }
+}
+?>
 
 
 <?php
