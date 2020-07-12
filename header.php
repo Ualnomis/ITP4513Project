@@ -124,13 +124,7 @@ require "connection/mysqli_conn.php";
           </button>
           <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <div class="photo">
-                    <img src="./assets/img/anime3.png" alt="Profile Photo">
-                  </div>
-                </a>
-              </li>
+
 
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -143,7 +137,13 @@ require "connection/mysqli_conn.php";
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
-                  <li class="nav-link"><a href="user.php" class="nav-item dropdown-item">Profile</a></li>
+                  <?php
+                  if ($_SESSION["role"] == "customer") {
+                  ?>
+                    <li class="nav-link"><a href="user.php" class="nav-item dropdown-item">Profile</a></li>
+                  <?php
+                  }
+                  ?>
                   <li class="nav-link"><a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a></li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-link"><a href="includes/logout.inc.php" class="nav-item dropdown-item">Log out</a></li>

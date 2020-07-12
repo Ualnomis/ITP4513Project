@@ -72,10 +72,10 @@ $shopName = $rc["ConsignmentStoreName"];
             <td><?php echo $rcgoods["goodsName"]; ?></td>
             <td><?php echo $rcgoods["stockPrice"]; ?></td>
             <td><?php echo $rc["quantity"]; ?></td>
-            <td><?php echo $rc["sellingPrice"]; ?></td>
+            <td><?php echo $rc["sellingPrice"] * $rc["quantity"]; ?></td>
           </tr>
         <?php
-          $totalPrice += $rc["sellingPrice"];
+          $totalPrice += $rc["sellingPrice"] * $rc["quantity"];
         }
         ?>
         <tr>

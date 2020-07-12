@@ -20,6 +20,22 @@ session_start();
     <a href="index.html">
       <h1>Hong Kong Cube Shop Management System</h1>
     </a>
+    <?php
+    if (isset($_GET['error'])) {
+      if ($_GET['error'] == "usertaken") {
+        echo "<h1 style=\"color: red\">Email have been registed</h1>";
+      } else if ($_GET['error'] == "nouser") {
+        echo "<h1 style=\"color: red\">Account No Exist</h1>";
+      } else if ($_GET['error'] == "wrongpwd") {
+        echo "<h1 style=\"color: red\">Account / Password Wrong</h1>";
+      }
+    }
+    if (isset($_GET['signup'])) {
+      if ($_GET['signup'] == "success") {
+        echo "<h1 style=\"color: green\">Sign Up Success</h1>";
+      }
+    }
+    ?>
   </div>
   <!-- login and sign up form -->
   <div class="form">
@@ -30,26 +46,10 @@ session_start();
     </ul>
 
     <div class="tab-content">
-
-
-
-
+      <!-- sign up form -->
       <div id="signup">
         <h1>Sign Up for Free</h1>
-        <?php
-        if (isset($_GET['error'])) {
-          if ($_GET['error'] == "usertaken") {
-            echo "<h1 style=\"color: red\">Email have been registed</h1>";
-          }
-        }
-        if (isset($_GET['signup'])) {
-          if ($_GET['signup'] == "success") {
-            echo "<h1 style=\"color: green\">Sign Up Success</h1>";
-          }
-        }
-        ?>
         <form action="includes/signup.inc.php" method="post">
-
           <div class="top-row">
             <div class="field-wrap">
               <label>
@@ -84,7 +84,7 @@ session_start();
             <label>
               Phone Number<span class="req">*</span>
             </label>
-            <input type="tel" name="phoneNo" maxlength="8" required autocomplete="off">
+            <input type="text" pattern="\d*" title="Please only input number" name="phoneNo" maxlength="8" required>
           </div>
 
           <input type="submit" name="signup-submit" class="button button-block" value="Sign Up">
@@ -92,6 +92,7 @@ session_start();
 
       </div>
 
+      <!-- login form -->
       <div id="login">
         <h1>Welcome Back!</h1>
         <?php

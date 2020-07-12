@@ -6,14 +6,16 @@ $fname = $_POST['fname'];
 $lname = $_POST['lname'];
 $phoneNo = $_POST['phoneNo'];
 $pswd = $_POST["pswd"];
-$pswdConfirm = $_POST['pswdConfirm'];
+$originpswd = $_POST['originpswd'];
 
 require "../connection/mysqli_conn.php";
-
-$sql = "UPDATE customer SET firstName='$fname', lastName='$lname', phoneNumber='$phoneNo', password='$pswd' WHERE customerEmail = '$userID'";
-echo $sql;
-mysqli_query($conn, $sql);
-if (mysqli_affected_rows($conn) > 0) {
-  echo "OK";
+$sql = $sql = "SELECT password FROM customer WHERE customerEmail = '$userID'";
+$rs = mysqli_query($conn, $sql);
+$rc = mysqli_fetch_assoc($rs);
+if ($originpswd == $rc["password"]) {
+  $sql = "UPDATE customer SET firstName='$fname', lastName='$lname', phoneNumber='$phoneNo', password='$pswd' WHERE customerEmail = '$userID'";
+  mysqli_query($conn, $sql);
   header("Location: ../user.php?update=success");
+} else {
+  header("Location: ../user.php?error=pwNotEqual");
 }

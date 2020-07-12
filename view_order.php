@@ -47,7 +47,6 @@ require "header.php";
             </tr>
         <?php
           }
-        } else {
         }
         ?>
       </tbody>
