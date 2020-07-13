@@ -48,8 +48,8 @@ $shopName = $rc["ConsignmentStoreName"];
     <table class="table">
       <thead>
         <tr>
-          <th class>Product ID</th>
-          <th>Product Name</th>
+          <th class>Good ID</th>
+          <th>Good Name</th>
           <th>Selling Price</th>
           <th>Qty Require</th>
           <th>Total</th>
@@ -71,7 +71,7 @@ $shopName = $rc["ConsignmentStoreName"];
             <td><?php echo $rcgoods["goodsName"]; ?></td>
             <td><?php echo $rcgoods["stockPrice"]; ?></td>
             <td><?php echo $rc["quantity"]; ?></td>
-            <td><?php echo $rc["sellingPrice"] * $rc["quantity"]; ?></td>
+            <td><?php echo "$" . $rc["sellingPrice"] * $rc["quantity"]; ?></td>
           </tr>
         <?php
           $totalPrice += $rc["sellingPrice"] * $rc["quantity"];
@@ -79,7 +79,7 @@ $shopName = $rc["ConsignmentStoreName"];
         ?>
         <tr>
           <td colspan="4" class="text-right">Total : </td>
-          <td><?php echo $totalPrice; ?></td>
+          <td><?php echo "$" . $totalPrice; ?></td>
         </tr>
       </tbody>
     </table>

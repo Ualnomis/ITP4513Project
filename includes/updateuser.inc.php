@@ -13,8 +13,13 @@ $sql = $sql = "SELECT password FROM customer WHERE customerEmail = '$userID'";
 $rs = mysqli_query($conn, $sql);
 $rc = mysqli_fetch_assoc($rs);
 if ($originpswd == $rc["password"]) {
-  $sql = "UPDATE customer SET firstName='$fname', lastName='$lname', phoneNumber='$phoneNo', password='$pswd' WHERE customerEmail = '$userID'";
-  mysqli_query($conn, $sql);
+  if (isset($pswd)) {
+    $sql = "UPDATE customer SET firstName='$fname', lastName='$lname', phoneNumber='$phoneNo', password='$originpswd' WHERE customerEmail = '$userID'";
+    mysqli_query($conn, $sql);
+  } else {
+    $sql = "UPDATE customer SET firstName='$fname', lastName='$lname', phoneNumber='$phoneNo', password='$pswd' WHERE customerEmail = '$userID'";
+    mysqli_query($conn, $sql);
+  }
   header("Location: ../user.php?update=success");
 } else {
   header("Location: ../user.php?error=pwNotEqual");

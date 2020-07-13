@@ -42,7 +42,7 @@ $rc = mysqli_fetch_assoc($rs);
 
 <div class="form-group">
   <label for="pwd">Password</label>
-  <input type="password" required class="form-control" name="pswd" id="pwd" placeholder="Password">
+  <input type="password" class="form-control" name="pswd" id="pwd" placeholder="Password">
 </div>
 
 <input type="submit" class="btn btn-primary" value = "Save Change">

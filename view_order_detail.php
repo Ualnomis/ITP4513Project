@@ -32,19 +32,19 @@ $shopName = $rc["ConsignmentStoreName"];
       exit();
     }
     ?>
-    <label style="font-size:1vw">
+    <label>
       Order ID: <?php echo $orderID; ?>
     </label>
-    <label style="font-size:1vw">Shop Name: <?php echo $shopName; ?></label>
-    <label style="font-size:1vw">Shop's Address: <?php echo $address; ?></label>
-    <label style="font-size:1vw">Order Date: <?php echo $orderDateTime; ?></label>
-    <label style="font-size:1vw">Status: <?php if ($status == 1) {
-                                            echo "Delivery";
-                                          } else if ($status == 2) {
-                                            echo "Awaiting";
-                                          } else if ($status == 3) {
-                                            echo "Completed";
-                                          } ?></label>
+    <label>Shop Name: <?php echo $shopName; ?></label>
+    <label>Shop's Address: <?php echo $address; ?></label>
+    <label>Order Date: <?php echo $orderDateTime; ?></label>
+    <label>Status: <?php if ($status == 1) {
+                      echo "Delivery";
+                    } else if ($status == 2) {
+                      echo "Awaiting";
+                    } else if ($status == 3) {
+                      echo "Completed";
+                    } ?></label>
     <br />
     <table class="table">
       <thead>
@@ -72,7 +72,7 @@ $shopName = $rc["ConsignmentStoreName"];
             <td><?php echo $rcgoods["goodsName"]; ?></td>
             <td><?php echo $rcgoods["stockPrice"]; ?></td>
             <td><?php echo $rc["quantity"]; ?></td>
-            <td><?php echo $rc["sellingPrice"] * $rc["quantity"]; ?></td>
+            <td><?php echo "$" . $rc["sellingPrice"] * $rc["quantity"]; ?></td>
           </tr>
         <?php
           $totalPrice += $rc["sellingPrice"] * $rc["quantity"];
@@ -80,7 +80,7 @@ $shopName = $rc["ConsignmentStoreName"];
         ?>
         <tr>
           <td colspan="4" class="text-right">Total : </td>
-          <td><?php echo $totalPrice; ?></td>
+          <td><?php echo "$" . $totalPrice; ?></td>
         </tr>
       </tbody>
     </table>

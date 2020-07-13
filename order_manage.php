@@ -3,9 +3,8 @@ require "header.php";
 if ($_SESSION["role"] != "tenant") {
   header("Location: dashboard.php");
 }
-
-
 ?>
+
 <script>
   function setValue(orderID) {
     document.getElementById("orderID").value = orderID;

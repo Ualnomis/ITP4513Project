@@ -1,9 +1,5 @@
 <?php
-
-
 require "header.php";
-
-
 ?>
 
 <!-- content -->
@@ -120,7 +116,7 @@ require "header.php";
                   $rs = mysqli_query($conn, $sql) or die(mysqli_connect_error($conn));
                   if (mysqli_num_rows($rs) > 0) {
                     while ($rc = mysqli_fetch_assoc($rs)) {
-                      printf("<option>%s</option>", $rc["consignmentStoreID"]);
+                      printf("<option>%s (%s)</option>", $rc["consignmentStoreID"], $rc["ConsignmentStoreName"]);
                     }
                   }
                   ?>

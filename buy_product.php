@@ -92,7 +92,7 @@ $cid;
                 $shopIDD = $rc["shopID"];
                 $count++;
               }
-              printf("<option value=" .  $rc["shopID"] . ">%s</option>", $rc["shopID"]);
+              printf("<option value=" .  $rc["shopID"] . ">%s (%s)</option>", $rc["shopID"], $rc["address"]);
             }
           }
           ?>
@@ -111,7 +111,10 @@ $cid;
                 $cID = $rc["consignmentStoreID"];
                 $count++;
               }
-              echo "<option value=" . $rc["consignmentStoreID"] . ">" . $rc["consignmentStoreID"] . "</option>";
+              $sql1 = "SELECT * FROM consignmentstore WHERE consignmentStoreID = " . $rc["consignmentStoreID"];
+              $rs1 = mysqli_query($conn, $sql1) or die(mysqli_connect_error($conn));
+              $rc1 = mysqli_fetch_assoc($rs1);
+              echo "<option value=" . $rc["consignmentStoreID"] . ">" . $rc["consignmentStoreID"] . " (" . $rc1["ConsignmentStoreName"] . ")" . "</option>";
             }
           }
           ?>
@@ -121,8 +124,8 @@ $cid;
         <table class="table">
           <thead>
             <tr>
-              <th class="text-center">Product</th>
-              <th>Prict</th>
+              <th class="text-center">Good Name</th>
+              <th>Price</th>
               <th>Qty available</th>
               <th>Qty Require</th>
               <th>Total</th>

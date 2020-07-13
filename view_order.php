@@ -19,7 +19,7 @@ require "header.php";
       <tbody>
         <!-- sample data -->
         <?php
-        $sql = "SELECT * FROM orders WHERE customerEmail = '" . $userID . "'";
+        $sql = "SELECT * FROM orders WHERE customerEmail = '" . $userID . "' ORDER BY orders.orderDateTime DESC;";
         $rs = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($rs) > 0) {
@@ -40,7 +40,7 @@ require "header.php";
                 ?>
 
               </td>
-              <td class="text-right"><?php echo $rc["totalPrice"]; ?></td>
+              <td class="text-right"><?php echo "$" . $rc["totalPrice"]; ?></td>
               <td class="td-actions text-right">
                 <a href="view_order_detail.php?orderID=<?php echo $rc["orderID"]; ?>"><button type="button" class="btn btn-primary">View Order</button></a>
               </td>

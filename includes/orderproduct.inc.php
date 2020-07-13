@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../connection/mysqli_conn.php";
-
+date_default_timezone_set("Asia/Hong_Kong");
 $userID = $_SESSION['userID'];
 $goodsID = $_POST['goodsID'];
 $goodsQty = $_POST['goodsQty'];
