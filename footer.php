@@ -58,9 +58,6 @@
      <script src="./assets/js/core/popper.min.js"></script>
      <script src="./assets/js/core/bootstrap.min.js"></script>
      <script src="./assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-     <!--  Google Maps Plugin    -->
-     <!-- Place this tag in your head or just before your close body tag. -->
-     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
      <!-- Chart JS -->
      <script src="./assets/js/plugins/chartjs.min.js"></script>
      <!--  Notifications Plugin    -->
@@ -178,13 +175,6 @@
          });
        });
      </script>
-     <script>
-       $(document).ready(function() {
-         // Javascript method's body can be found in assets/js/demos.js
-         demo.initDashboardPageCharts();
-
-       });
-     </script>
      <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
      <script>
        window.TrackJS &&
@@ -192,6 +182,78 @@
            token: "ee6fab19c5a04ac1a32a645abde4613a",
            application: "black-dashboard-free"
          });
+     </script>
+
+
+     <!-- order price calculate script -->
+     <script>
+       $(document).ready(function() {
+         $.ajaxSetup({
+           cache: false
+         });
+         load_consignmentstore_shop();
+         load_consignmentstore_product();
+         // everything here will be executed once index.html has finished loading, so at the start when the user is yet to do anything.
+         $("#shopidSelector").load(load_consignmentstore_shop());
+         $("#shopidSelector").change(load_consignmentstore_shop()); //this translates to: "when the element with id='select1' changes its value execute load_new_content() function"
+         $("#cidSelector").change(load_consignmentstore_shop());
+       });
+
+       function load_consignmentstore_shop() {
+         var selected_option_value = $("#shopidSelector option:selected").val(); //get the value of the current selected option.
+
+         $.post("includes/searchstore.inc.php", {
+             option_value: selected_option_value
+           },
+           function(data) { //this will be executed once the `script_that_receives_value.php` ends its execution, `data` contains everything said script echoed.
+             $("#cidSelector").html(data);
+             load_consignmentstore_product();
+             // alert(data); //just to see what it returns
+           }
+         );
+       }
+
+       function load_consignmentstore_product() {
+         var selected_option_value = $("#cidSelector option:selected").val(); //get the value of the current selected option.
+
+         $.post("includes/loadProduct.inc.php", {
+             option_value: selected_option_value
+           },
+           function(data) { //this will be executed once the `script_that_receives_value.php` ends its execution, `data` contains everything said script echoed.
+             $("#tbodyProduct").html(data);
+             // alert(data); //just to see what it returns
+           }
+         );
+       }
+     </script>
+
+     <script>
+       function calculateAmount(val, price, id) {
+         var divobj = document.getElementById(id);
+         var originValue = parseFloat(divobj.value);
+
+         var tot_price = val * price;
+         /*display the result*/
+
+         if (originValue >= tot_price) {
+           calculateTotal((originValue - tot_price), 1);
+         } else {
+           calculateTotal((tot_price - originValue), 0);
+         }
+         divobj.value = tot_price;
+       }
+
+       function calculateTotal(price, change) {
+         var divobj = document.getElementById('totalPrice');
+         /*display the result*/
+         if (change == 0) {
+           totalprice = parseFloat(divobj.value) + price;
+           divobj.value = totalprice;
+         } else {
+           totalprice = parseFloat(divobj.value) - price;
+           divobj.value = totalprice;
+         }
+       }
      </script>
      </body>
 

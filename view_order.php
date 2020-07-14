@@ -17,7 +17,7 @@ require "header.php";
         </tr>
       </thead>
       <tbody>
-        <!-- sample data -->
+        <!-- view order data -->
         <?php
         $sql = "SELECT * FROM orders WHERE customerEmail = '" . $userID . "' ORDER BY orders.orderDateTime DESC;";
         $rs = mysqli_query($conn, $sql);

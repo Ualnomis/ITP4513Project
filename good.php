@@ -30,7 +30,7 @@ require "header.php";
         if (mysqli_num_rows($rs) > 0) {
           while ($rc = mysqli_fetch_assoc($rs)) {
         ?>
-            <!-- sample data -->
+            <!-- good data -->
             <tr>
               <td><?php echo $rc["goodsNumber"]; ?></td>
               <td><?php echo $rc["consignmentStoreID"]; ?></td>

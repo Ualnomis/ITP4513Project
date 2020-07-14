@@ -29,7 +29,7 @@ if ($_SESSION["role"] != "tenant") {
         </tr>
       </thead>
       <tbody>
-        <!-- sample data -->
+        <!-- order data -->
         <?php
         $sql = "SELECT orderID, orders.consignmentStoreID, shopID, orderDateTime, status, totalPrice
           FROM consignmentstore, orders
