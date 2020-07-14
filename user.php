@@ -37,12 +37,12 @@ $rc = mysqli_fetch_assoc($rs);
 </div>
 <div class="form-group">
   <label for="pwdConfirm">Origin Password</label>
-  <input type="password" required class="form-control"  name="originpswd" placeholder="Password">
+  <input type="password" required class="form-control" id="pwdConfirm" name="originpswd" placeholder="Password">
 </div>
 
 <div class="form-group">
-  <label for="pwd">Password</label>
-  <input type="password" class="form-control" name="pswd" id="pwd" placeholder="Password">
+  <label for="pswd">Password</label>
+  <input type="password" class="form-control" name="pswd" id="pswd" placeholder="Password">
 </div>
 
 <input type="submit" class="btn btn-primary" value = "Save Change">
